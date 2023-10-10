@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { handleSentMessage } from "../../../utils/helpers";
+import Typing from "../Typing";
 
 const CreateMessage = ({ socket }) => {
   const [message, setMessage] = useState("");
@@ -16,13 +16,16 @@ const CreateMessage = ({ socket }) => {
     }
     setMessage("");
   };
-
+  const isTyping = () =>
+    socket.emit("typing", `${localStorage.getItem("user")} is typing`);
   return (
     <form onSubmit={handleSentMessage}>
+      <Typing socket={socket} />
       <input
         type="text"
         value={message}
         onChange={({ target }) => setMessage(target.value)}
+        onKeyDown={isTyping}
       />
       <button type="submit">send</button>
     </form>

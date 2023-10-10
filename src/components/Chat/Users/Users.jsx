@@ -5,7 +5,6 @@ const Users = ({ socket }) => {
   useEffect(() => {
     socket.on("responseNewUser", (data) => setUsers(data));
   }, [socket, users]);
-  console.log(users);
   return (
     <div>
       {users &&
