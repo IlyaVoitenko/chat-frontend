@@ -8,10 +8,13 @@ const Home = ({ socket }) => {
   const handeSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("user", user);
-    socket.emit("newUser", {
+    const randomId = `${socket.id}-${Math.random()}`;
+    const newUser = {
       user,
-      socketID: socket.id,
-    });
+      socketID: randomId,
+    };
+    socket.emit("newUser", newUser);
+    socket.emit("currentUser", newUser);
     navigation("/chat");
   };
 

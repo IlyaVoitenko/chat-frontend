@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 
 const Users = ({ socket }) => {
   const [users, setUsers] = useState([]);
+
   useEffect(() => {
     socket.on("responseNewUser", (data) => setUsers(data));
   }, [socket, users]);
+
   return (
     <div>
       {users &&

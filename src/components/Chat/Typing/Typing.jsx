@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
+import { checkTyping } from "../../../utils/helpers";
 
 const Typing = ({ socket }) => {
   const [status, setStatus] = useState("");
+
   useEffect(() => {
-    console.log("respnseTyping");
-    socket.on("respnseTyping", (data) => {
-      setStatus(data);
-      setTimeout(() => setStatus(""), 1000);
-    });
+    checkTyping(socket, setStatus);
   }, [socket]);
+
   return <div>{status}</div>;
 };
 

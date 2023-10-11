@@ -9,10 +9,11 @@ const Body = ({ socket }) => {
   useEffect(() => {
     socket.on("response", (data) => setMessages([...messages, data]));
   }, [socket, messages]);
+
   return (
     <div>
       <header>
-        <button onClick={() => handleLeaveChat(navigation)}>
+        <button onClick={() => handleLeaveChat(navigation, socket)}>
           leave the chat
         </button>
       </header>
